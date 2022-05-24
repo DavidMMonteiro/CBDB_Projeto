@@ -2,10 +2,10 @@ SELECT * FROM gestao_artigos_db.horasempregado;
 
 SELECT 
     s.idEmpregado IdEmpregado,
-    CONCAT(u.primeiro, ' ', u.apelido) Nome_Empregado,
+    h.Nome_Empregado,
     h.Ano,
     h.Mes,
-    (s.valor_hora * h.HorasTotais + s.valor_hora_extra * h.HorasExtra) Total
+    (s.valor_hora * h.HorasTotais + s.valor_hora_extra * h.HorasExtra) SalarioTotal
 FROM
     Salario s
 JOIN

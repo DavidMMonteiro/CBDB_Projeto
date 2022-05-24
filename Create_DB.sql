@@ -67,22 +67,6 @@ CREATE TABLE Empregado (
         REFERENCES Tipo_Empregado (idTipoEmpregado)
 )  ENGINE=INNODB;
 
-#Table Horario
-CREATE TABLE Horario (
-    idHorario INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Identificação do horario' PRIMARY KEY,
-    idEmpregado INT UNSIGNED NOT NULL COMMENT 'Identificador do empregado',
-    dtRegisto DATETIME NOT NULL DEFAULT NOW() COMMENT 'Data de criação do registo',
-    Hora_inicio TIME NOT NULL COMMENT 'Hora de inicio de trabalho do empregado',
-    Hora_fim TIME NOT NULL COMMENT 'Hora de fim de trabalho do empregado',
-    Hora_entrada TIME NOT NULL COMMENT 'Hora de entrada do empregado',
-    Hora_Saida TIME NOT NULL COMMENT 'Hora de saída do empregado',
-    Horas_Totais INT NOT NULL COMMENT 'Horas totais feitas',
-    Horas_Extra INT NOT NULL COMMENT 'Horas extra feitas numa data',
-    dtHorario DATE NOT NULL COMMENT 'Data do horário',
-    CONSTRAINT Fk_Empregado_Horario FOREIGN KEY (idEmpregado)
-        REFERENCES Empregado (idEmpregado)
-)  ENGINE=INNODB;
-
 #Table Salario
 CREATE TABLE Salario (
     idSalario INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Identificação do tipo de empregado' PRIMARY KEY,
@@ -94,6 +78,26 @@ CREATE TABLE Salario (
     Total DECIMAL DEFAULT 0 COMMENT 'Total do salário',
     CONSTRAINT FK_Empregado_Salario FOREIGN KEY (idEmpregado)
         REFERENCES Empregado (idEmpregado)
+)  ENGINE=INNODB;
+
+
+#Table Horario
+CREATE TABLE Horario (
+    idHorario INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Identificação do horario' PRIMARY KEY,
+    idEmpregado INT UNSIGNED NOT NULL COMMENT 'Identificador do empregado',
+    idSalario INT UNSIGNED NULL COMMENT 'Identifiador Salario correspondente',
+    dtRegisto DATETIME NOT NULL DEFAULT NOW() COMMENT 'Data de criação do registo',
+    Hora_inicio TIME NOT NULL COMMENT 'Hora de inicio de trabalho do empregado',
+    Hora_fim TIME NOT NULL COMMENT 'Hora de fim de trabalho do empregado',
+    Hora_entrada TIME NOT NULL COMMENT 'Hora de entrada do empregado',
+    Hora_Saida TIME NOT NULL COMMENT 'Hora de saída do empregado',
+    Horas_Totais INT NOT NULL COMMENT 'Horas totais feitas',
+    Horas_Extra INT NOT NULL COMMENT 'Horas extra feitas numa data',
+    dtHorario DATE NOT NULL COMMENT 'Data do horário',
+    CONSTRAINT Fk_Empregado_Horario FOREIGN KEY (idEmpregado)
+        REFERENCES Empregado (idEmpregado),
+    CONSTRAINT Fk_Salario_Horario FOREIGN KEY (idSalario)
+        REFERENCES Salario (idSalario)
 )  ENGINE=INNODB;
 
 #Table Artigos Categorias
@@ -145,3 +149,33 @@ CREATE TABLE encomenda (
     CONSTRAINT Fk_Encomenda_Artigo FOREIGN KEY (idArtigo)
         REFERENCES artigo (idArtigo)
 )  ENGINE=INNODB;
+
+#Create Views
+CREATE OR REPLACE VIEW HorasEmpregado AS
+SELECT 
+	e.idEmpregado idEmpregado,
+    CONCAT(u.primeiro, ' ', u.apelido) Nome_Empregado,
+    SUM(h.Horas_Totais) HorasTotais,
+    SUM(h.Horas_Extra) HorasExtra,
+    YEAR(h.dtHorario) Ano,
+    MONTH(h.dtHorario) Mes
+FROM
+    horario h
+JOIN empregado e ON e.idEmpregado = h.idEmpregado
+JOIN utilizador u ON u.idUtilizador = h.idEmpregado
+GROUP BY h.idEmpregado , Ano , Mes;
+
+CREATE OR REPLACE VIEW SalarioTotal AS
+SELECT 
+    s.idEmpregado IdEmpregado,
+    h.Nome_Empregado,
+    h.Ano,
+    h.Mes,
+    (s.valor_hora * h.HorasTotais + s.valor_hora_extra * h.HorasExtra) SalarioTotal
+FROM
+    Salario s
+JOIN
+    horasempregado h ON h.idEmpregado = s.idEmpregado
+JOIN 
+	utilizador u on u.idUtilizador = s.idEmpregado
+group by s.idEmpregado, h.Ano, h.Mes;

@@ -49,15 +49,17 @@ Insert into Empregado values(3, default, 2, "Funcionario de loja física");
 Insert into Empregado values(4, default, 3, "Administrador da rede da empresa");
 
 #Dados Horarios
-Insert into Horario value(default, 3, default, "09:00:00", "18:00:00", "9:00:00", "18:00:00",9, 0,"2022-05-15");
-Insert into Horario value(default, 3, default, "09:00:00", "18:00:00", "09:30:00", "18:30:00",9, 0,"2022-05-16");
-Insert into Horario value(default, 3, default, "08:00:00", "17:00:00", "08:30:00", "17:30:00", 9, 0,"2022-05-17");
-Insert into Horario value(default, 4, default, "09:00:00", "18:00:00", "09:00:00", "20:00:00", 9, 2,"2022-05-15");
-Insert into Horario value(default, 4, default, "09:00:00", "18:00:00", "09:00:00", "19:00:00", 9, 1,"2022-05-16");
+Insert into Horario value(default, 3, default, default, "09:00:00", "18:00:00", "09:00:00", "18:00:00", 8, 0,"2022-04-30");
+Insert into Horario value(default, 3, default, default, "09:00:00", "18:00:00", "09:00:00", "18:00:00", 8, 0,"2022-05-15");
+Insert into Horario value(default, 3, default, default, "09:00:00", "18:00:00", "09:30:00", "18:30:00", 8, 0,"2022-05-16");
+Insert into Horario value(default, 3, default, default, "08:00:00", "17:00:00", "08:30:00", "17:30:00", 8, 0,"2022-05-17");
+Insert into Horario value(default, 4, default, default, "09:00:00", "18:00:00", "09:00:00", "20:00:00", 8, 2,"2022-05-15");
+Insert into Horario value(default, 4, default, default, "09:00:00", "18:00:00", "09:00:00", "19:00:00", 8, 1,"2022-05-16");
 
 #Dados Salarios
-Insert into Salario value(default, 3, default, 3, 6, now(),null);
-Insert into Salario value(default, 4, default, 4, 10, now(), null);
+Insert into Salario value(default, 3, default, 3, 6, '2022-04-01',null);
+Insert into Salario value(default, 3, default, 3, 6, '2022-05-01',null);
+Insert into Salario value(default, 4, default, 4, 10, '2022-05-01', null);
 
 #Dados categoria de artigos
 Insert into Categoria_artigo value(1,default, "Tinta oleo", "Tinta feita a partir de oleo");
@@ -77,3 +79,20 @@ Insert into artigo value(8, default, "Pincel Cabalo 15cm", "Pincel de pelo de ca
 #Dados Venda
 
 #Dados Encomenda
+
+
+
+#Auto-Update data
+
+#Update Horarios
+Update horario h
+join salario s on s.idEmpregado = h.idEmpregado And Year(s.dtSalario) = Year(h.dtHorario) And Month(s.dtSalario) = Month(h.dtHorario)
+set h.idSalario = s.idSalario;
+
+#Update Salarios
+Update salario s 
+join (Select s.*, st.salarioTotal from salario s
+join salarioTotal st 
+on st.idEmpregado = s.idEmpregado And Year(s.dtSalario) = st.Ano And Month(s.dtSalario) = st.mes) st 
+on st.idSalario = s.idSalario And Year(s.dtSalario) = Year(st.dtSalario) And Month(s.dtSalario) = Month(st.dtSalario)
+set s.Total = st.SalarioTotal;
