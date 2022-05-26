@@ -82,9 +82,9 @@ insert into venda values(2,4,2,default,null,33);
 insert into venda values(3,4,2,default,null,62);
 insert into venda values(4,3,1,default,null,77);
 #Dados Encomenda
-
-
-
+insert into encomenda values(1,2,2,default,4,50);
+insert into encomenda values(2,2,2,default,6,80);
+insert into encomenda values(3,1,2,default,100,10);
 #Auto-Update data
 
 #Update Horarios
