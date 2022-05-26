@@ -1,4 +1,18 @@
 #Utilizadores
+#-------------------------------
+SELECT 
+    *
+FROM
+    utilizador;
+#-------------------------------
+SELECT 
+    *
+FROM
+    utilizador
+WHERE
+    primeiro LIKE '%C';
+#-------------------------------
+
 
 
 #Clientes
@@ -27,8 +41,29 @@ FROM
     tipo_cliente tp ON c.idTipoCliente = tp.idTipoCliente
 GROUP BY c.idTipoCliente;
 #--------------------------------
-Select c.idCliente, concat(c.primeiro, ' ', c.apelido) Nome from cliente 
-join vendas;
+SELECT 
+    c.idCliente, CONCAT(c.primeiro, ' ', c.apelido) Nome
+FROM
+    cliente
+        JOIN
+    vendas;
+#--------------------------------
+SELECT 
+    CONCAT(c.primeiro, ' ', c.apelido) Nome_Cliente,
+    v.idVenda,
+    a.Nome,
+    e.quantidade,
+    e.preco_artigo 'Preço do Artigo no momento',
+    e.preco_artigo * e.quantidade 'Preço Encomenda'
+FROM
+    utilizador c
+        JOIN
+    venda v ON v.idCliente = c.idUtilizador
+        JOIN
+    encomenda e ON e.idVenda = v.idVenda
+        JOIN
+    artigo a ON a.idArtigo = e.idArtigo;
+#--------------------------------
 
 
 #Empregados
@@ -63,7 +98,39 @@ JOIN
 	utilizador u on u.idUtilizador = s.idEmpregado
 group by s.idEmpregado, h.Ano, h.Mes;
 
+#Salario
+SELECT 
+    s.idSalario,
+    CONCAT(u.primeiro, ' ', u.apelido) NomeEmpregado,
+    s.Valor_hora,
+    s.valor_hora_Extra,
+    s.dtSalario,
+    s.Total SalarioTotal
+FROM
+    salario s
+        JOIN
+    utilizador u ON u.idUtilizador = s.idEmpregado
+ORDER BY s.dtSalario DESC;
+#--------------------------------
 
+#Horario
+SELECT 
+    CONCAT(u.primeiro, ' ', u.apelido) NomeEmpregado,
+    h.idHorario,
+    h.dtHorario,
+    h.Hora_inicio,
+    h.Hora_fim,
+    h.Hora_entrada,
+    h.hora_saida,
+    h.horas_totais,
+    h.horas_extra
+FROM
+    horario h
+        JOIN
+    utilizador u ON u.idUtilizador = h.idEmpregado;
+#--------------------------------
+
+    
 #Vendas
 
 #Artigos

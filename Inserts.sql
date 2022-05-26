@@ -5,8 +5,8 @@ Delete from encomenda where idEncomenda > 0;
 Delete from venda where idVenda > 0;
 Delete from artigo where idArtigo > 0;
 Delete from categoria_artigo where idCat > 0;
-Delete from salario where idSalario > 0;
 Delete from horario where idHorario > 0;
+Delete from salario where idSalario > 0;
 Delete from empregado where idEmpregado > 0;
 DELETE FROM tipo_empregado WHERE idTipoEmpregado > 0;
 Delete from Cliente where idCliente > 0;
@@ -49,17 +49,17 @@ Insert into Empregado values(3, default, 2, "Funcionario de loja física");
 Insert into Empregado values(4, default, 3, "Administrador da rede da empresa");
 
 #Dados Horarios
-Insert into Horario value(default, 3, default, default, "09:00:00", "18:00:00", "09:00:00", "18:00:00", 8, 0,"2022-04-30");
-Insert into Horario value(default, 3, default, default, "09:00:00", "18:00:00", "09:00:00", "18:00:00", 8, 0,"2022-05-15");
-Insert into Horario value(default, 3, default, default, "09:00:00", "18:00:00", "09:30:00", "18:30:00", 8, 0,"2022-05-16");
-Insert into Horario value(default, 3, default, default, "08:00:00", "17:00:00", "08:30:00", "17:30:00", 8, 0,"2022-05-17");
-Insert into Horario value(default, 4, default, default, "09:00:00", "18:00:00", "09:00:00", "20:00:00", 8, 2,"2022-05-15");
-Insert into Horario value(default, 4, default, default, "09:00:00", "18:00:00", "09:00:00", "19:00:00", 8, 1,"2022-05-16");
+Insert into Horario value(1, 3, default, default, "09:00:00", "18:00:00", "09:00:00", "18:00:00", 8, 0,"2022-04-30");
+Insert into Horario value(2, 3, default, default, "09:00:00", "18:00:00", "09:00:00", "18:00:00", 8, 0,"2022-05-15");
+Insert into Horario value(3, 3, default, default, "09:00:00", "18:00:00", "09:30:00", "18:30:00", 8, 0,"2022-05-16");
+Insert into Horario value(4, 3, default, default, "08:00:00", "17:00:00", "08:30:00", "17:30:00", 8, 0,"2022-05-17");
+Insert into Horario value(5, 4, default, default, "09:00:00", "18:00:00", "09:00:00", "20:00:00", 8, 2,"2022-05-15");
+Insert into Horario value(6, 4, default, default, "09:00:00", "18:00:00", "09:00:00", "19:00:00", 8, 1,"2022-05-16");
 
 #Dados Salarios
-Insert into Salario value(default, 3, default, 3, 6, '2022-04-01',null);
-Insert into Salario value(default, 3, default, 3, 6, '2022-05-01',null);
-Insert into Salario value(default, 4, default, 4, 10, '2022-05-01', null);
+Insert into Salario value(1, 3, default, 3, 6, '2022-04-01',null);
+Insert into Salario value(2, 3, default, 3, 6, '2022-05-01',null);
+Insert into Salario value(3, 4, default, 4, 10, '2022-05-01', null);
 
 #Dados categoria de artigos
 Insert into Categoria_artigo value(1,default, "Tinta oleo", "Tinta feita a partir de oleo");
@@ -67,22 +67,29 @@ Insert into Categoria_artigo value(2,default, "Argila", "Material de Argila");
 Insert into Categoria_artigo value(3,default, "Ferramentas", "Ferramentas de pintura");
 
 #Dados Artigos
-Insert into artigo value(1, default, "Argila Vermelha", "Argila de picmentação vermelha", 4, 5, True, 2);
-Insert into artigo value(2, default, "Argila Preta", "Argila de picmentação preta", 4, 10, True, 2);
-Insert into artigo value(3, default, "Argila Volcanica", "Argila de base de materiais volcánicas", 6, 3, True, 2);
-Insert into artigo value(4, default, "Tinta Oleo verde", "Tinta de oleo de picmentação verde", 3, 20, True, 1);
-Insert into artigo value(5, default, "Tinta Oleo Azul", "Tinta de oleo de picmentação azul", 2.5, 25, True, 1);
-Insert into artigo value(6, default, "Pincal 30cm", "Pincel de pelo normal 30cm", 2, 15, True, 3);
-Insert into artigo value(7, default, "Pincel 15cm", "Pincel de pelo normal 15cm", 1.5, 10, True, 3);
-Insert into artigo value(8, default, "Pincel Cabalo 15cm", "Pincel de pelo de cabalo 15cm", 3, 5, True, 3);
+Insert into artigo value(1, default, "Argila Vermelha", "Argila de picmentação vermelha", 4, 5.0, True, 2);
+Insert into artigo value(2, default, "Argila Preta", "Argila de picmentação preta", 4, 5.0, True, 2);
+Insert into artigo value(3, default, "Argila Volcanica", "Argila de base de materiais volcánicas", 6, 5.0, True, 2);
+Insert into artigo value(4, default, "Tinta Oleo verde", "Tinta de oleo de picmentação verde", 3, 5.0, True, 1);
+Insert into artigo value(5, default, "Tinta Oleo Azul", "Tinta de oleo de picmentação azul", 2, 5.0, True, 1);
+Insert into artigo value(6, default, "Pincal 30cm", "Pincel de pelo normal 30cm", 15, 2.0, True, 3);
+Insert into artigo value(7, default, "Pincel 15cm", "Pincel de pelo normal 15cm", 10, 1.50, True, 3);
+Insert into artigo value(8, default, "Pincel Cabalo 15cm", "Pincel de pelo de cabalo 15cm", 5, 3.0, True, 3);
 
 #Dados Venda
-insert into venda values(1,3,1,default,null,50);
-insert into venda values(2,4,2,default,null,33);
-insert into venda values(3,4,2,default,null,62);
-insert into venda values(4,3,1,default,null,77);
-#Dados Encomenda
+insert into venda values(1,3,1,default,null, null);
+insert into venda values(2,4,2,default,null, null);
+insert into venda values(3,4,2,default,null, null);
+insert into venda values(4,3,1,default,null, null);
 
+#Dados Encomenda
+Insert into encomenda value(1, 1, 1, default, 2, 5.0);
+Insert into encomenda value(2, 1, 2, default, 1, 5.0);
+Insert into encomenda value(3, 2, 6, default, 3, 2.0);
+Insert into encomenda value(4, 2, 7, default, 5, 1.50);
+Insert into encomenda value(5, 2, 8, default, 1, 3.0);
+Insert into encomenda value(6, 3, 1, default, 2, 5.0);
+Insert into encomenda value(7, 3, 2, default, 1, 5.0);
 
 
 #Auto-Update data
