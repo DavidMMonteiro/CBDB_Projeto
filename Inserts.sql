@@ -91,7 +91,6 @@ Insert into encomenda value(5, 2, 8, default, 1, 3.0);
 Insert into encomenda value(6, 3, 1, default, 2, 5.0);
 Insert into encomenda value(7, 3, 2, default, 1, 5.0);
 
-
 #Auto-Update data
 
 #Update Horarios
