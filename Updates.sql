@@ -12,6 +12,7 @@ UPDATE salario s
 SET 
     s.Total = st.SalarioTotal;
 
+#Update todos os horarios os salarios que correspondem
 UPDATE horario h
         JOIN
     salario s ON s.idEmpregado = h.idEmpregado
@@ -19,3 +20,17 @@ UPDATE horario h
         AND MONTH(s.dtSalario) = MONTH(h.dtHorario) 
 SET 
     h.idSalario = s.idSalario;
+
+#Update todas as vendas com o valor total, fecha a venda e guarda a data de emisão da venda.
+UPDATE venda v
+        JOIN
+    (SELECT 
+        e.idVenda, SUM(e.preco_artigo * e.quantidade) TotalEncomenda
+    FROM
+        encomenda e
+    JOIN artigo a ON a.idArtigo = e.idArtigo
+    GROUP BY e.idVenda) e ON e.idVenda = v.idVenda 
+SET 
+    v.valor_total = e.TotalEncomenda,
+    v.estado = "Fechada",
+    v.dtEmisao = now();

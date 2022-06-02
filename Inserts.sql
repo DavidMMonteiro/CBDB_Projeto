@@ -77,10 +77,10 @@ Insert into artigo value(7, default, "Pincel 15cm", "Pincel de pelo normal 15cm"
 Insert into artigo value(8, default, "Pincel Cabalo 15cm", "Pincel de pelo de cabalo 15cm", 5, 3.0, True, 3);
 
 #Dados Venda
-insert into venda values(1,3,1,default,null, null);
-insert into venda values(2,4,2,default,null, null);
-insert into venda values(3,4,2,default,null, null);
-insert into venda values(4,3,1,default,null, null);
+insert into venda values(1,3,1,default,null, default, null);
+insert into venda values(2,4,2,default,null, default, null);
+insert into venda values(3,4,2,default,null, default, null);
+insert into venda values(4,3,1,default,null, default, null);
 
 #Dados Encomenda
 Insert into encomenda value(1, 1, 1, default, 2, 5.0);

@@ -129,6 +129,7 @@ CREATE TABLE venda (
     idCliente INT UNSIGNED NOT NULL COMMENT 'Cliente que efetua a compra',
     dtRegisto DATETIME NOT NULL DEFAULT NOW() COMMENT 'Data de criação da encomenda',
     dtEmisao DATETIME COMMENT 'Data de emissão da venda',
+    estado Enum('Pendente','Fechada','Cancelada') not null default 'Pendente' comment 'Estado da venda',
     valor_total DECIMAL COMMENT 'Valor total da venda',
     CONSTRAINT Fk_Empregado_Venda FOREIGN KEY (idEmpregado)
         REFERENCES Empregado (idEmpregado),
