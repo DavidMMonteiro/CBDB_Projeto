@@ -1,4 +1,5 @@
-CREATE OR REPLACE VIEW HorasEmpregado AS
+#Lista das horas efetuadas por empregado num mes comcreto
+CREATE OR REPLACE VIEW v_horas_empregados AS
     SELECT 
         e.idEmpregado idEmpregado,
         CONCAT(u.primeiro, ' ', u.apelido) Nome_Empregado,
@@ -14,7 +15,8 @@ CREATE OR REPLACE VIEW HorasEmpregado AS
         utilizador u ON u.idUtilizador = h.idEmpregado
     GROUP BY h.idEmpregado , Ano , Mes;
 
-CREATE OR REPLACE VIEW SalarioTotal AS
+#Salario total dos empregados num mes comcreto
+CREATE OR REPLACE VIEW v_Salario_Total AS
     SELECT 
         s.idEmpregado IdEmpregado,
         h.Nome_Empregado,
@@ -24,12 +26,13 @@ CREATE OR REPLACE VIEW SalarioTotal AS
     FROM
         Salario s
             JOIN
-        horasempregado h ON h.idEmpregado = s.idEmpregado
+        v_horas_empregados h ON h.idEmpregado = s.idEmpregado
             JOIN
         utilizador u ON u.idUtilizador = s.idEmpregado
     GROUP BY s.idEmpregado , h.Ano , h.Mes;
 
-CREATE OR REPLACE VIEW VerEmpregados AS
+#Informação dos empregados
+CREATE OR REPLACE VIEW V_Empregados AS
     SELECT 
         u.idUtilizador,
         u.dtNascimento,
@@ -50,7 +53,8 @@ CREATE OR REPLACE VIEW VerEmpregados AS
             JOIN
         tipo_empregado te ON te.idTipoEmpregado = e.idTipoEmpregado; 
 
-CREATE OR REPLACE VIEW VerClientes AS
+# Informação dos clientes
+CREATE OR REPLACE VIEW V_Clientes AS
     SELECT 
         u.idUtilizador,
         u.dtNascimento,
@@ -71,8 +75,10 @@ CREATE OR REPLACE VIEW VerClientes AS
             JOIN
         tipo_cliente tc ON tc.idTipoCliente = c.idTipoCliente; 
         
-CREATE OR REPLACE VIEW TelemovelEmpregados AS
+#Lista de telemoveis dos empregados
+CREATE OR REPLACE VIEW v_Telemovel_Empregados AS
     SELECT 
+		u.idUtilizador,
         CONCAT(u.primeiro, ' ', u.apelido) Nome,
         u.nif,
         CONCAT('+', t.prefixo, ' ', t.numero) Telemovel
@@ -82,9 +88,11 @@ CREATE OR REPLACE VIEW TelemovelEmpregados AS
         empregado e ON e.idEmpregado = t.idUtilizador
             JOIN
         utilizador u ON u.idUtilizador = e.idEmpregado;
-        
-CREATE OR REPLACE VIEW TelemovelClientes AS
+
+#Lista de telemoveis dos clientes
+CREATE OR REPLACE VIEW v_Telemovel_Clientes AS
     SELECT 
+		u.idUtilizador,
         CONCAT(u.primeiro, ' ', u.apelido) Nome,
         u.nif,
         CONCAT('+', t.prefixo, ' ', t.numero) Telemovel
@@ -94,8 +102,9 @@ CREATE OR REPLACE VIEW TelemovelClientes AS
         cliente c ON c.idCliente = t.idUtilizador
             JOIN
         utilizador u ON u.idUtilizador = c.idCliente;
-        
-CREATE OR REPLACE VIEW VerArtigos AS
+
+#Informação dos artigos
+CREATE OR REPLACE VIEW V_Artigos AS
     SELECT 
         a.idArtigo,
         a.nome,
@@ -103,8 +112,50 @@ CREATE OR REPLACE VIEW VerArtigos AS
         a.stock,
         a.valor,
         IF(a.estado, 'Ativo', 'Desactivo') Estado,
-        ca.nome
+        ca.nome Categoria
     FROM
         artigo a
             JOIN
         categoria_artigo ca ON ca.idCat = a.idCat;
+        
+#Lista dos horarios dos empregados
+CREATE OR REPLACE VIEW V_Horarios_Empregados AS
+    SELECT 
+        h.idHorario,
+        e.Nome,
+        h.Hora_inicio,
+        h.hora_fim,
+        h.dtHorario Data
+    FROM
+        horario h
+            JOIN
+        v_empregados e ON e.idUtilizador = h.idEmpregado;
+#Lista de vendas
+CREATE OR REPLACE VIEW v_vendas AS
+    SELECT 
+        v.idVenda,
+        c.Nome 'Nome Cliente',
+        e.Nome 'Nome Empregado',
+        v.estado,
+        v.dtEmisao,
+        v.valor_total
+    FROM
+        venda v
+            JOIN
+        v_clientes c ON c.idUtilizador = v.idCliente
+            JOIN
+        v_empregados e ON e.idUtilizador = v.idEmpregado;
+
+#Lista de encomendas e vendas asociadas
+CREATE OR REPLACE VIEW v_encomendas AS
+    SELECT 
+        e.idVenda,
+        e.idEncomenda,
+        a.Nome Artigo,
+        e.quantidade,
+        e.preco_artigo,
+        (e.preco_artigo * e.quantidade) 'Valor Encomenda'
+    FROM
+        encomenda e
+            JOIN
+        v_artigos a ON a.idArtigo = e.idArtigo;

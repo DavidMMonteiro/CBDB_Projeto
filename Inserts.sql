@@ -90,29 +90,3 @@ Insert into encomenda value(4, 2, 7, default, 5, 1.50);
 Insert into encomenda value(5, 2, 8, default, 1, 3.0);
 Insert into encomenda value(6, 3, 1, default, 2, 5.0);
 Insert into encomenda value(7, 3, 2, default, 1, 5.0);
-
-#Auto-Update data
-
-#Update Horarios
-UPDATE horario h
-        JOIN
-    salario s ON s.idEmpregado = h.idEmpregado
-        AND YEAR(s.dtSalario) = YEAR(h.dtHorario)
-        AND MONTH(s.dtSalario) = MONTH(h.dtHorario) 
-SET 
-    h.idSalario = s.idSalario;
-
-#Update Salarios
-UPDATE salario s
-        JOIN
-    (SELECT 
-        s.*, st.salarioTotal
-    FROM
-        salario s
-    JOIN salarioTotal st ON st.idEmpregado = s.idEmpregado
-        AND YEAR(s.dtSalario) = st.Ano
-        AND MONTH(s.dtSalario) = st.mes) st ON st.idSalario = s.idSalario
-        AND YEAR(s.dtSalario) = YEAR(st.dtSalario)
-        AND MONTH(s.dtSalario) = MONTH(st.dtSalario) 
-SET 
-    s.Total = st.SalarioTotal;

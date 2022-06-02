@@ -4,7 +4,7 @@ UPDATE salario s
     (SELECT s.*, st.salarioTotal
     FROM
         salario s
-    JOIN salarioTotal st ON st.idEmpregado = s.idEmpregado
+    JOIN v_salario_Total st ON st.idEmpregado = s.idEmpregado
         AND YEAR(s.dtSalario) = st.Ano
         AND MONTH(s.dtSalario) = st.mes) st ON st.idSalario = s.idSalario
         AND YEAR(s.dtSalario) = YEAR(st.dtSalario)
