@@ -36,11 +36,7 @@ CREATE OR REPLACE VIEW V_Empregados AS
     SELECT 
         u.idUtilizador,
         u.dtNascimento,
-        CONCAT(u.rua,
-                ', ',
-                u.localidade,
-                ', ',
-                u.cod_postal) Morada,
+        CONCAT(u.rua, ', ', u.localidade, ', ', u.cod_postal) Morada,
         u.nif,
         CONCAT(u.primeiro, ' ', u.apelido) nome,
         u.email,
@@ -58,11 +54,7 @@ CREATE OR REPLACE VIEW V_Clientes AS
     SELECT 
         u.idUtilizador,
         u.dtNascimento,
-        CONCAT(u.rua,
-                ', ',
-                u.localidade,
-                ', ',
-                u.cod_postal) Morada,
+        CONCAT(u.rua, ', ', u.localidade, ', ', u.cod_postal) Morada,
         u.nif,
         CONCAT(u.primeiro, ' ', u.apelido) nome,
         u.email,
@@ -125,11 +117,12 @@ CREATE OR REPLACE VIEW V_Horarios_Empregados AS
         e.Nome,
         h.Hora_inicio,
         h.hora_fim,
-        h.dtHorario Data
+        h.dtHorario DataHorario
     FROM
         horario h
             JOIN
         v_empregados e ON e.idUtilizador = h.idEmpregado;
+        
 #Lista de vendas
 CREATE OR REPLACE VIEW v_vendas AS
     SELECT 

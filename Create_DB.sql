@@ -22,7 +22,7 @@ CREATE TABLE Utilizador (
 CREATE TABLE Telemovel (
     idTelemovel INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Identificação Telemovel' PRIMARY KEY,
     dtRegisto DATETIME NOT NULL DEFAULT NOW() COMMENT 'Data do registo do numero de telemovel',
-    prefixo VARCHAR(4) DEFAULT '0035' COMMENT 'Prefixo do número de telemovel',
+    prefixo VARCHAR(4) NOt null DEFAULT '0035' COMMENT 'Prefixo do número de telemovel',
     numero VARCHAR(9) NOT NULL COMMENT 'Número de telemovel',
     idUtilizador INT UNSIGNED COMMENT 'Identificação do utilizador',
     CONSTRAINT FK_Utilizador_Telemovel FOREIGN KEY (idUtilizador)
