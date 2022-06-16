@@ -34,12 +34,13 @@ CREATE OR REPLACE VIEW v_Salario_Total AS
 #Informação dos empregados
 CREATE OR REPLACE VIEW V_Empregados AS
     SELECT 
-        u.idUtilizador,
+        u.idUtilizador idEmpregado, 
         u.dtNascimento,
         CONCAT(u.rua, ', ', u.localidade, ', ', u.cod_postal) Morada,
         u.nif,
         CONCAT(u.primeiro, ' ', u.apelido) nome,
         u.email,
+        te.idTipoEmpregado,
         te.nome 'Função',
         e.area_trabalho
     FROM
@@ -52,12 +53,13 @@ CREATE OR REPLACE VIEW V_Empregados AS
 # Informação dos clientes
 CREATE OR REPLACE VIEW V_Clientes AS
     SELECT 
-        u.idUtilizador,
+        u.idUtilizador idCliente,
         u.dtNascimento,
         CONCAT(u.rua, ', ', u.localidade, ', ', u.cod_postal) Morada,
         u.nif,
         CONCAT(u.primeiro, ' ', u.apelido) nome,
         u.email,
+        tc.idTipoCliente,
         tc.nome 'TipoCliente',
         c.valor_conta 'Valor em Conta'
     FROM
@@ -73,7 +75,9 @@ CREATE OR REPLACE VIEW v_Telemovel_Empregados AS
 		u.idUtilizador,
         CONCAT(u.primeiro, ' ', u.apelido) Nome,
         u.nif,
-        CONCAT('+', t.prefixo, ' ', t.numero) Telemovel
+        t.idTelemovel,
+        t.prefixo, 
+        t.numero
     FROM
         telemovel t
             JOIN
@@ -87,7 +91,9 @@ CREATE OR REPLACE VIEW v_Telemovel_Clientes AS
 		u.idUtilizador,
         CONCAT(u.primeiro, ' ', u.apelido) Nome,
         u.nif,
-        CONCAT('+', t.prefixo, ' ', t.numero) Telemovel
+        t.idTelemovel,
+        t.prefixo,
+        t.numero
     FROM
         telemovel t
             JOIN
@@ -104,6 +110,7 @@ CREATE OR REPLACE VIEW V_Artigos AS
         a.stock,
         a.valor,
         IF(a.estado, 'Ativo', 'Desactivo') Estado,
+        ca.idCat,
         ca.nome Categoria
     FROM
         artigo a
@@ -114,6 +121,7 @@ CREATE OR REPLACE VIEW V_Artigos AS
 CREATE OR REPLACE VIEW V_Horarios_Empregados AS
     SELECT 
         h.idHorario,
+        e.idEmpregado,
         e.Nome,
         h.Hora_inicio,
         h.hora_fim,
@@ -121,13 +129,15 @@ CREATE OR REPLACE VIEW V_Horarios_Empregados AS
     FROM
         horario h
             JOIN
-        v_empregados e ON e.idUtilizador = h.idEmpregado;
+        v_empregados e ON e.idEmpregado = h.idEmpregado;
         
 #Lista de vendas
 CREATE OR REPLACE VIEW v_vendas AS
     SELECT 
         v.idVenda,
+        c.idCliente,
         c.Nome 'Nome Cliente',
+        e.idEmpregado,
         e.Nome 'Nome Empregado',
         v.estado,
         v.dtEmisao,
@@ -135,15 +145,16 @@ CREATE OR REPLACE VIEW v_vendas AS
     FROM
         venda v
             JOIN
-        v_clientes c ON c.idUtilizador = v.idCliente
+        v_clientes c ON c.idCliente = v.idCliente
             JOIN
-        v_empregados e ON e.idUtilizador = v.idEmpregado;
+        v_empregados e ON e.idEmpregado = v.idEmpregado;
 
 #Lista de encomendas e vendas asociadas
 CREATE OR REPLACE VIEW v_encomendas AS
     SELECT 
         e.idVenda,
         e.idEncomenda,
+        a.idArtigo,
         a.Nome Artigo,
         e.quantidade,
         e.preco_artigo,
