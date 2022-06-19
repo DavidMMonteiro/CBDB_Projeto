@@ -61,7 +61,7 @@ CREATE OR REPLACE VIEW V_Clientes AS
         u.email,
         tc.idTipoCliente,
         tc.nome 'TipoCliente',
-        c.valor_conta 'Valor em Conta'
+        c.valor_conta
     FROM
         utilizador u
             JOIN
@@ -136,9 +136,9 @@ CREATE OR REPLACE VIEW v_vendas AS
     SELECT 
         v.idVenda,
         c.idCliente,
-        c.Nome 'Nome Cliente',
+        c.Nome Nome_Cliente,
         e.idEmpregado,
-        e.Nome 'Nome Empregado',
+        e.Nome Nome_Empregado,
         v.estado,
         v.dtEmisao,
         v.valor_total
@@ -158,7 +158,7 @@ CREATE OR REPLACE VIEW v_encomendas AS
         a.Nome Artigo,
         e.quantidade,
         e.preco_artigo,
-        (e.preco_artigo * e.quantidade) 'Valor Encomenda'
+        (e.preco_artigo * e.quantidade) Valor_Encomenda
     FROM
         encomenda e
             JOIN
