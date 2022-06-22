@@ -20,6 +20,10 @@ CREATE OR REPLACE VIEW v_Salario_Total AS
     SELECT 
         s.idEmpregado IdEmpregado,
         h.Nome_Empregado,
+        s.Valor_Hora,
+        h.horasTotais Horas_Totais, 
+        s.Valor_Hora_Extra,
+        h.horasExtra Horas_Extra,
         h.Ano,
         h.Mes,
         (s.valor_hora * h.HorasTotais + s.valor_hora_extra * h.HorasExtra) SalarioTotal
