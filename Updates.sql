@@ -21,7 +21,7 @@ UPDATE horario h
 SET 
     h.idSalario = s.idSalario;
 
-#Update todas as vendas com o valor total, fecha a venda e guarda a data de emisão da venda.
+#Update todas as vendas com o valor total, fecha a venda e guarda a data de emissão da venda.
 UPDATE venda v
         JOIN
     (SELECT 
@@ -33,4 +33,4 @@ UPDATE venda v
 SET 
     v.valor_total = e.TotalEncomenda,
     v.estado = "Fechada",
-    v.dtEmisao = now();
+    v.dtEmisao = now();#where v.idVenda = 5;
