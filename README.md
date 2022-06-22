@@ -1,6 +1,5 @@
 # Projeto Conceção e Desenvolvimento de Bases de Dados
 ### Instituição:
-- Instituto Politécnico de Leiria 
 ![Logo IPL](https://www.ipleiria.pt/wp-content/uploads/2022/04/estg_h.svg)
 #### Aréa:
 >Cursos Técnico Superiore Profissional
@@ -9,7 +8,7 @@
 #### Unidade curricular:
 >Conceção e Desenvolvimento de Bases de Dados
 #### Descrição:
->Este projeto consiste no desenvolvimento de uma base de dados com tabelas relacionais.
+>Este projeto consiste no desenvolvimento de uma base de dados com tabelas relacionais.\
 >Esta base de dados tenta recriar uma base de dados para uma empresa de distribuição, recriando a gestão de:
 >    - Faturação
 >    - Stock
