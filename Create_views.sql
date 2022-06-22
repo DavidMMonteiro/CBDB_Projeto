@@ -1,3 +1,8 @@
+/*
+TeSP_PSI_2122_CDBD
+Sistema de Informação para gestão de empresa de distribuição
+David Machado Monteiro, estudante n.º 2211849
+*/
 #Lista das horas efetuadas por empregado num mes comcreto
 CREATE OR REPLACE VIEW v_horas_empregados AS
     SELECT 
@@ -45,7 +50,7 @@ CREATE OR REPLACE VIEW V_Empregados AS
         CONCAT(u.primeiro, ' ', u.apelido) nome,
         u.email,
         te.idTipoEmpregado,
-        te.nome 'Função',
+        te.nome Tipo_Empregado,
         e.area_trabalho
     FROM
         utilizador u

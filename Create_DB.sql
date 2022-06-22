@@ -1,3 +1,9 @@
+/*
+TeSP_PSI_2122_CDBD
+Sistema de Informação para gestão de empresa de distribuição
+David Machado Monteiro, estudante n.º 2211849
+*/
+
 #Initialize date base
 DROP DATABASE IF EXISTS Gestao_Artigos_DB;
 CREATE DATABASE Gestao_Artigos_DB;

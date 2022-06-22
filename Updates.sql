@@ -1,3 +1,8 @@
+/*
+TeSP_PSI_2122_CDBD
+Sistema de Informação para gestão de empresa de distribuição
+David Machado Monteiro, estudante n.º 2211849
+*/
 #Update all Salario row dinamicamente
 UPDATE salario s
         JOIN

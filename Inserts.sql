@@ -1,3 +1,9 @@
+/*
+TeSP_PSI_2122_CDBD
+Sistema de Informação para gestão de empresa de distribuição
+David Machado Monteiro, estudante n.º 2211849
+*/
+
 #Seleciona a base de dados
 Use gestao_artigos_db;
 #Elemina todos os dados na tabela atual
@@ -57,7 +63,7 @@ Insert into tipo_empregado values(5, default, "Caixa Jefe", "Jefe dos empregados
 Insert into Empregado values(3, default, 2, "Funcionario de loja física");
 Insert into Empregado values(4, default, 3, "Administrador da rede da empresa");
 Insert into Empregado values(6, default, 4, "Diretor");
-Insert into Empregado values(8, default, 5, "Administrador de caixa de lojja física");
+Insert into Empregado values(8, default, 5, "Administrador de caixa de loja física");
 
 #Dados Horarios
 Insert into Horario value(1, 3, default, default, "09:00:00", "18:00:00", "09:00:00", "18:00:00", 8, 0,"2022-04-30");
