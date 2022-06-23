@@ -4,7 +4,7 @@ Sistema de Informação para gestão de empresa de distribuição
 David Machado Monteiro, estudante n.º 2211849
 Tiago Miguel Marques Amaro nº2211862
 */
-#Update all Salario row dinamicamente
+#Update o Valor Total do Salario dinamicamente
 UPDATE salario s
         JOIN
     (SELECT s.*, st.salarioTotal
@@ -28,6 +28,7 @@ SET
     h.idSalario = s.idSalario;
 
 #Update todas as vendas com o valor total, fecha a venda e guarda a data de emissão da venda.
+#Update uma venda específica com a condição 'where'
 UPDATE venda v
         JOIN
     (SELECT 
