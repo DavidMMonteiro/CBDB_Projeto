@@ -1,3 +1,10 @@
+/*
+TeSP_PSI_2122_CDBD
+Sistema de Informação para gestão de empresa de distribuição
+David Machado Monteiro, estudante n.º 2211849
+Tiago Miguel Marques Amaro nº2211862
+*/
+
 # Create Users
 Drop user 'administrador.Sistema'@'localhost';
 CREATE USER If not exists 'administrador.Sistema'@'localhost' IDENTIFIED BY 'adminSistema';
