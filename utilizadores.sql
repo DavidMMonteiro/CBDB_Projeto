@@ -50,6 +50,7 @@ Grant Select on gestao_artigos_db.v_telemovel_clientes to 'faturacao'@'localhost
 Grant Select on gestao_artigos_db.v_empregados to 'faturacao'@'localhost';
 Grant Select on gestao_artigos_db.v_telemovel_empregados to 'faturacao'@'localhost';
 Grant Select on gestao_artigos_db.v_encomendas to 'faturacao'@'localhost';
+Grant Select(idEmpregado, dtHorario) on gestao_artigos_db.horario to 'faturacao'@'localhost';
 Grant Select on gestao_artigos_db.v_horarios_empregados to 'faturacao'@'localhost';
 Grant Select on gestao_artigos_db.v_horas_empregados to 'faturacao'@'localhost';
 Grant Select on gestao_artigos_db.v_vendas to 'faturacao'@'localhost';
@@ -58,6 +59,7 @@ Grant Select on gestao_artigos_db.v_vendas to 'faturacao'@'localhost';
 Grant Insert on gestao_artigos_db.salario to 'faturacao'@'localhost';
 
 #Faturação Update Privileges 
+Grant Update(idSalario) on gestao_artigos_db.horario to 'faturacao'@'localhost';
 Grant Update on gestao_artigos_db.salario to 'faturacao'@'localhost';
 Grant Update(stock, valor, estado) on gestao_artigos_db.v_artigos to 'faturacao'@'localhost';
 Grant Update on gestao_artigos_db.v_encomendas to 'faturacao'@'localhost';

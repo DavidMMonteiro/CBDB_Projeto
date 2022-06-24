@@ -81,7 +81,7 @@ CREATE TABLE Salario (
     dtRegisto DATETIME NOT NULL DEFAULT NOW() COMMENT 'Data de criação do registo',
     Valor_hora DECIMAL NOT NULL COMMENT 'Valor por hora',
     Valor_hora_extra DECIMAL NOT NULL COMMENT 'Valor por hora extra',
-    dtSalario DATE NOT NULL COMMENT 'Data de emissão do salário',
+    dtSalario DATE NOT NULL DEFAULT NOW() COMMENT 'Data de emissão do salário',
     Total DECIMAL DEFAULT 0 COMMENT 'Total do salário',
     CONSTRAINT FK_Empregado_Salario FOREIGN KEY (idEmpregado)
         REFERENCES Empregado (idEmpregado)
