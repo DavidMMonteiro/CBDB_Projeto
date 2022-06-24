@@ -15,11 +15,11 @@
 >    - Vendas
 #### Estrutura de utilização:
 >Para poder utilizar a base de dados de forma curreta tem que iniciar as squerys nesta ordem:
->1. Iniciar a query Create_DB
->2. Iniciar a query Create_views
->3. Iniciar a query Inserts
->4. Iniciar Update (Opcional para gestão de vendas de forma automática)
->5. Ver as consultas 
+>1. Iniciar a script **tabelas.sql**. (Necesario para iniciar a base de dados)
+>2. Iniciar a script **views.sql**. (Importante iniciar esta script pois as consultas são efetuadas a partir das views criadas).
+>3. Iniciar a script **registos.sql**. (Dados de teste)
+>4. Iniciar a script **updates.sql**. (Utilização opcional para gestão automática de vendas e salarios)
+>5. Ver as **querys** no ficheiro **consultas.sql**. 
 #### Projeto desenvolvido por:
 >- David Machado Monteiro, estudante nº2211849
 >- Tiago Miguel Marques Amaro, estudante nº2211862
