@@ -52,7 +52,7 @@ Grant Insert on gestao_artigos_db.salario to 'faturacao'@'localhost';
 
 #Faturação Update Privileges 
 Grant Update on gestao_artigos_db.salario to 'faturacao'@'localhost';
-Grant Update on gestao_artigos_db.v_artigos to 'faturacao'@'localhost';
+Grant Update(stock, valor, estado) on gestao_artigos_db.v_artigos to 'faturacao'@'localhost';
 Grant Update on gestao_artigos_db.v_encomendas to 'faturacao'@'localhost';
 Grant Update on gestao_artigos_db.v_vendas to 'faturacao'@'localhost';
 
@@ -66,8 +66,11 @@ Grant Delete on gestao_artigos_db.v_vendas to 'faturacao'@'localhost';
 #Set Administrador Caixa Privileges
 #Administrador Caixa Select Privileges 
 Grant Select on gestao_artigos_db.v_artigos to 'administrador.caixa'@'localhost';
+Grant Select(idUtilizador, dtNascimento, rua, localidade, cod_postal, nif, primeiro, apelido, email) on gestao_artigos_db.utilizador to 'administrador.caixa'@'localhost';
+Grant Select(idCLiente, idTipoCliente) on gestao_artigos_db.cliente to 'administrador.caixa'@'localhost';
 Grant Select on gestao_artigos_db.v_clientes to 'administrador.caixa'@'localhost';
 Grant Select on gestao_artigos_db.v_telemovel_clientes to 'administrador.caixa'@'localhost';
+Grant Select(idEmpregado, idTipoEmpregado) on gestao_artigos_db.empregado to 'administrador.caixa'@'localhost';
 Grant Select on gestao_artigos_db.v_empregados to 'administrador.caixa'@'localhost';
 Grant Select on gestao_artigos_db.v_telemovel_empregados to 'administrador.caixa'@'localhost';
 Grant Select on gestao_artigos_db.v_encomendas to 'administrador.caixa'@'localhost';
@@ -85,6 +88,8 @@ Grant Insert on gestao_artigos_db.venda to 'administrador.caixa'@'localhost';
 Grant Insert on gestao_artigos_db.encomenda to 'administrador.caixa'@'localhost';
 
 #Administrador Caixa Update Privileges 
+Grant Update(dtNascimento, rua, localidade, cod_postal, nif, primeiro, apelido, email) on gestao_artigos_db.utilizador to 'administrador.caixa'@'localhost';
+Grant Update(idTipoCliente) on gestao_artigos_db.cliente to 'administrador.caixa'@'localhost';
 Grant Update on gestao_artigos_db.v_clientes to 'administrador.caixa'@'localhost';
 Grant Update on gestao_artigos_db.v_empregados to 'administrador.caixa'@'localhost';
 Grant Update on gestao_artigos_db.v_horarios_empregados to 'administrador.caixa'@'localhost';
@@ -103,6 +108,8 @@ Grant Delete on gestao_artigos_db.venda to 'administrador.caixa'@'localhost';
 #Set Caixa Privileges
 #Caixa Select Privileges 
 Grant Select on gestao_artigos_db.v_artigos to 'caixa'@'localhost';
+Grant Select(idUtilizador, dtNascimento, rua, localidade, cod_postal, nif, primeiro, apelido, email) on gestao_artigos_db.utilizador to 'caixa'@'localhost';
+Grant Select(idTipoCliente) on gestao_artigos_db.cliente to 'caixa'@'localhost';
 Grant Select on gestao_artigos_db.v_clientes to 'caixa'@'localhost';
 Grant Select on gestao_artigos_db.v_telemovel_clientes to 'caixa'@'localhost';
 Grant Select on gestao_artigos_db.v_empregados to 'caixa'@'localhost';
@@ -120,6 +127,8 @@ Grant Insert on gestao_artigos_db.venda to 'caixa'@'localhost';
 Grant Insert on gestao_artigos_db.encomenda to 'caixa'@'localhost'; 
 
 #Caixa Update Privileges 
+Grant Update(dtNascimento, rua, localidade, cod_postal, nif, primeiro, apelido, email) on gestao_artigos_db.utilizador to 'caixa'@'localhost';
+Grant Update(idTipoCliente) on gestao_artigos_db.cliente to 'caixa'@'localhost';
 Grant Update on gestao_artigos_db.v_clientes to 'caixa'@'localhost'; 
 Grant Update on gestao_artigos_db.v_telemovel_clientes to 'caixa'@'localhost'; 
 Grant Update on gestao_artigos_db.v_vendas to 'caixa'@'localhost'; 
@@ -142,6 +151,8 @@ Grant Select on gestao_artigos_db.categoria_artigo to 'administrador.armazem'@'l
 Grant Select on gestao_artigos_db.v_horarios_empregados to 'administrador.armazem'@'localhost';
 Grant Select on gestao_artigos_db.v_encomendas to 'administrador.armazem'@'localhost';
 Grant Select on gestao_artigos_db.v_vendas to 'administrador.armazem'@'localhost';
+Grant Select(idUtilizador, dtNascimento, rua, localidade, cod_postal, nif, primeiro, apelido, email) on gestao_artigos_db.utilizador to 'administrador.caixa'@'localhost';
+Grant Select(idEmpregado, idTipoEmpregado) on gestao_artigos_db.empregado to 'administrador.caixa'@'localhost';
 Grant Select on gestao_artigos_db.v_empregados to 'administrador.armazem'@'localhost';
 Grant Select on gestao_artigos_db.v_telemovel_empregados to 'administrador.armazem'@'localhost';
 
@@ -153,7 +164,9 @@ Grant Insert on gestao_artigos_db.horario to 'administrador.armazem'@'localhost'
 Grant Insert on gestao_artigos_db.categoria_artigo to 'administrador.armazem'@'localhost';
 Grant Insert on gestao_artigos_db.artigo to 'administrador.armazem'@'localhost';
 
-#Administrado Armazaem Update Privileges
+#Administrado Armazem Update Privileges
+Grant Update(dtNascimento, rua, localidade, cod_postal, nif, primeiro, apelido, email) on gestao_artigos_db.utilizador to 'administrador.caixa'@'localhost';
+Grant Update(idTipoEmpregado) on gestao_artigos_db.empregado to 'administrador.caixa'@'localhost';
 Grant update on gestao_artigos_db.v_empregados to 'administrador.armazem'@'localhost';
 Grant update on gestao_artigos_db.v_telemovel_empregados to 'administrador.armazem'@'localhost';
 Grant update on gestao_artigos_db.v_horarios_empregados to 'administrador.armazem'@'localhost';
