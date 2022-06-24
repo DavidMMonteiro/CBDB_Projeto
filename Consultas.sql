@@ -48,7 +48,7 @@ FROM
 #---------------------------------------
 
 #---------------------------------------
-#Consulta para obter as encomendas feitas pelos clientes
+#Consulta para obter as compras feitas pelos clientes
 SELECT 
 	c.idCliente,
     c.nome Nome_Cliente,
@@ -111,9 +111,9 @@ SELECT
 FROM
     v_horarios_empregados
 WHERE
-    YEAR(DataHorario) = YEAR('2022-04-00')
+    YEAR(DataHorario) = YEAR('2022-06-00')
 AND 
-    MONTH(DataHorario) = MONTH('2022-04-00');
+    MONTH(DataHorario) = MONTH('2022-06-00');
 #---------------------------------------
 
 #---------------------------------------
@@ -203,7 +203,7 @@ SELECT
 FROM
     gestao_artigos_db.v_artigos
 WHERE
-    idCat = 2 OR Categoria LIKE ‘Argila’
+    idCat = 2 OR Categoria LIKE 'Argila'
 ORDER BY Categoria;
 #---------------------------------------
 
@@ -236,18 +236,24 @@ WHERE idCliente = 1;
 #---------------------------------------
 #Consulta numero de vendas efetuadas por un empregado
 SELECT 
-   idEmpregado, Nome_Empregado, COUNT(idVenda) 'Vendas Efetuadas'
+    idEmpregado,
+    Nome_Empregado,
+    COUNT(idVenda) 'Vendas Efetuadas'
 FROM
     gestao_artigos_db.v_vendas
+WHERE
+    estado = 'Fechada'
 GROUP BY idEmpregado;
 #---------------------------------------
 
 #---------------------------------------
-#Consulta numero de vendas efetuadas por un cliente
+#Consulta numero de compras efetuadas por un cliente
 SELECT 
    idCliente, Nome_Cliente, COUNT(idVenda) 'Compras Efetuadas'
 FROM
     gestao_artigos_db.v_vendas
+WHERE
+    estado = 'Fechada'
 GROUP BY idCliente;
 #---------------------------------------
 
@@ -257,6 +263,8 @@ SELECT
     idCliente, Nome_Cliente, SUM(valor_total) 'Valor Total das Compras'
 FROM
     gestao_artigos_db.v_vendas
+WHERE
+    estado = 'Fechada'
 GROUP BY idCliente;
 #---------------------------------------
 

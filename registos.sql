@@ -40,12 +40,19 @@ Insert into telemovel Values(3, default, default, "987654321", 2);
 Insert into telemovel Values(4, default, default, "987321654", 2); 
 Insert into telemovel Values(5, default, default, "987426153", 2); 
 Insert into telemovel Values(6, default, default, "954368127", 3); 
-Insert into telemovel Values(7, default, default, "954682317", 4); 
+Insert into telemovel Values(7, default, default, "954682317", 4);  
+Insert into telemovel Values(8,	default, default, "956623654", 6);
+Insert into telemovel Values(9, default, default, "956689655", 6);
+Insert into telemovel Values(10, default, default, "995511221", 7);
+Insert into telemovel Values(11, default, default, "995511222", 7);
+Insert into telemovel Values(12, default, default, "985632147",	8);
+Insert into telemovel Values(13, default, default, "985632148", 8);
 
 #Dados tipo de clientes
 Insert into Tipo_Cliente values(1, default, "Loja", "Cliente que compra em loja física");
 Insert into Tipo_Cliente values(2, default, "Online", "Cliente que compra em loja online");
 Insert into Tipo_Cliente values(3, default, "Comissão", "Cliente que faz comissões");
+Insert into Tipo_Cliente values(4, default, "Pre-pagamento", "Cliente dejá pago antes de obter o artigo em loja");
 
 #Dados Clientes
 Insert into Cliente Value(1, 1, default);
@@ -74,18 +81,23 @@ Insert into Horario value(4, 3, default, default, "08:00:00", "17:00:00", "08:30
 Insert into Horario value(5, 4, default, default, "09:00:00", "18:00:00", "09:00:00", "20:00:00", 8, 2,"2022-05-15");
 Insert into Horario value(6, 4, default, default, "09:00:00", "18:00:00", "09:00:00", "19:00:00", 8, 1,"2022-05-16");
 Insert into Horario value(7, 4, default, default, "09:00:00", "18:00:00", "09:00:00", "18:00:00", 8, 1,"2022-06-01");
-Insert into Horario value(8, 4, default, default, "09:00:00", "18:00:00", "09:00:00", "17:00:00", 8, 1,"2022-06-02");
-Insert into Horario value(9, 4, default, default, "09:00:00", "18:00:00", "09:00:00", "20:00:00", 8, 1,"2022-06-03");
+Insert into Horario value(8, 4, default, default, "09:00:00", "18:00:00", "09:00:00", "17:00:00", 7, 0,"2022-06-02");
+Insert into Horario value(9, 4, default, default, "09:00:00", "18:00:00", "09:00:00", "19:00:00", 8, 1,"2022-06-03");
+Insert into Horario value(10, 8, default, default, "09:00:00", "18:00:00", "09:00:00", "18:00:00", 8, 1,"2022-06-01");
+Insert into Horario value(11, 8, default, default, "09:00:00", "18:00:00", "09:00:00", "17:00:00", 7, 0,"2022-06-02");
+Insert into Horario value(12, 8, default, default, "09:00:00", "18:00:00", "09:00:00", "20:00:00", 8, 2,"2022-06-03");
 
 #Dados Salarios
 Insert into Salario value(1, 3, default, 3, 6, '2022-04-01',null);
 Insert into Salario value(2, 3, default, 3, 6, '2022-05-01',null);
 Insert into Salario value(3, 4, default, 4, 10, '2022-05-01', null);
+Insert into Salario value(4, 8, default, 4, 7, '2022-06-01', null);
 
 #Dados categoria de artigos
 Insert into Categoria_artigo value(1,default, "Tinta oleo", "Tinta feita a partir de oleo");
 Insert into Categoria_artigo value(2,default, "Argila", "Material de Argila");
 Insert into Categoria_artigo value(3,default, "Ferramentas", "Ferramentas de pintura");
+Insert into Categoria_artigo value(4,default, "Lapiz", "Lapiz de Carbão");
 
 #Dados Artigos
 Insert into artigo value(1, default, "Argila Vermelha", "Argila de picmentação vermelha", 4, 5.0, True, 2);
@@ -102,6 +114,7 @@ insert into venda values(1,3,1,default,null, default, null);
 insert into venda values(2,4,2,default,null, default, null);
 insert into venda values(3,4,2,default,null, default, null);
 insert into venda values(4,3,1,default,null, default, null);
+insert into venda values(5,4,1,default,null, default, null);
 
 #Dados Encomenda
 Insert into encomenda value(1, 1, 1, default, 2, 5.0);

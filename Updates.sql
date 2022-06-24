@@ -41,3 +41,12 @@ SET
     v.valor_total = e.TotalEncomenda,
     v.estado = "Fechada",
     v.dtEmisao = now();#where v.idVenda = 5;
+    
+#Update Cancela a venda na condição 'where'
+UPDATE v_vendas v 
+SET 
+    v.valor_total = 0,
+    v.estado = 'Cancelada',
+    v.dtEmisao = NOW()
+WHERE
+    v.idVenda = 4;

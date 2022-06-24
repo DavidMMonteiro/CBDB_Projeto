@@ -44,12 +44,16 @@ CREATE OR REPLACE VIEW v_Salario_Total AS
 #Informação dos empregados
 CREATE OR REPLACE VIEW V_Empregados AS
     SELECT 
-        u.idUtilizador idEmpregado, 
+        u.idUtilizador idEmpregado,
         u.dtNascimento,
-        CONCAT(u.rua, ', ', u.localidade, ', ', u.cod_postal) Morada,
         u.nif,
-        CONCAT(u.primeiro, ' ', u.apelido) nome,
         u.email,
+        CONCAT(u.primeiro, ' ', u.apelido) nome,
+        CONCAT(u.rua,
+                ', ',
+                u.localidade,
+                ', ',
+                u.cod_postal) Morada,
         te.idTipoEmpregado,
         te.nome Tipo_Empregado,
         e.area_trabalho
@@ -58,18 +62,23 @@ CREATE OR REPLACE VIEW V_Empregados AS
             JOIN
         empregado e ON u.idUtilizador = e.idEmpregado
             JOIN
-        tipo_empregado te ON te.idTipoEmpregado = e.idTipoEmpregado; 
+        tipo_empregado te ON te.idTipoEmpregado = e.idTipoEmpregado
+    ORDER BY 4; 
 
 # Informação dos clientes
 CREATE OR REPLACE VIEW V_Clientes AS
     SELECT 
         u.idUtilizador idCliente,
         u.dtNascimento,
-        CONCAT(u.rua, ', ', u.localidade, ', ', u.cod_postal) Morada,
         u.nif,
         CONCAT(u.primeiro, ' ', u.apelido) nome,
         u.email,
-        tc.idTipoCliente,
+        CONCAT(u.rua,
+                ', ',
+                u.localidade,
+                ', ',
+                u.cod_postal) Morada,
+        c.idTipoCliente,
         tc.nome 'TipoCliente',
         c.valor_conta
     FROM
@@ -77,28 +86,30 @@ CREATE OR REPLACE VIEW V_Clientes AS
             JOIN
         cliente c ON u.idUtilizador = c.idCliente
             JOIN
-        tipo_cliente tc ON tc.idTipoCliente = c.idTipoCliente; 
+        tipo_cliente tc ON tc.idTipoCliente = c.idTipoCliente
+    ORDER BY 4; 
         
 #Lista de telemoveis dos empregados
 CREATE OR REPLACE VIEW v_Telemovel_Empregados AS
     SELECT 
-		u.idUtilizador,
+        u.idUtilizador,
         CONCAT(u.primeiro, ' ', u.apelido) Nome,
         u.nif,
         t.idTelemovel,
-        t.prefixo, 
+        t.prefixo,
         t.numero
     FROM
         telemovel t
             JOIN
         empregado e ON e.idEmpregado = t.idUtilizador
             JOIN
-        utilizador u ON u.idUtilizador = e.idEmpregado;
+        utilizador u ON u.idUtilizador = e.idEmpregado
+    ORDER BY 2;
 
 #Lista de telemoveis dos clientes
 CREATE OR REPLACE VIEW v_Telemovel_Clientes AS
     SELECT 
-		u.idUtilizador,
+        u.idUtilizador,
         CONCAT(u.primeiro, ' ', u.apelido) Nome,
         u.nif,
         t.idTelemovel,
@@ -109,7 +120,8 @@ CREATE OR REPLACE VIEW v_Telemovel_Clientes AS
             JOIN
         cliente c ON c.idCliente = t.idUtilizador
             JOIN
-        utilizador u ON u.idUtilizador = c.idCliente;
+        utilizador u ON u.idUtilizador = c.idCliente
+    ORDER BY 2;
 
 #Informação dos artigos
 CREATE OR REPLACE VIEW V_Artigos AS
