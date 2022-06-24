@@ -29,7 +29,7 @@ SET
 
 #Update todas as vendas com o valor total, fecha a venda e guarda a data de emissão da venda.
 #Update uma venda específica com a condição 'where'
-UPDATE venda v
+UPDATE v_vendas v
         JOIN
     (SELECT 
         e.idVenda, SUM(e.preco_artigo * e.quantidade) TotalEncomenda
