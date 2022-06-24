@@ -20,4 +20,7 @@
 >3. Iniciar a query Inserts
 >4. Iniciar Update (Opcional para gestão de vendas de forma automática)
 >5. Ver as consultas 
-
+#### Projeto desenvolvido por:
+>- David Machado Monteiro, estudante nº2211849
+>- Tiago Miguel Marques Amaro, estudante nº2211862
+>- Alexandre Gomes Almeida, estudante n.º 2211867
